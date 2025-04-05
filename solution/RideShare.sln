@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0A180AB7-56E9-487D-A40C-4053593352F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShare.API", "..\src\RideShare.API\RideShare.API.csproj", "{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShare.BLL", "..\src\RideShare.BLL\RideShare.BLL.csproj", "{9C365340-1A59-E9D4-44CE-6E52D1D803EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShare.DAL", "..\src\RideShare.DAL\RideShare.DAL.csproj", "{557DD6A7-F72F-AC73-006C-BBCF02768299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideShare.Infrastructure", "..\src\RideShare.Infrastructure\RideShare.Infrastructure.csproj", "{76101A1F-C1E7-AFE0-389C-FB59299C7281}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C365340-1A59-E9D4-44CE-6E52D1D803EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C365340-1A59-E9D4-44CE-6E52D1D803EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C365340-1A59-E9D4-44CE-6E52D1D803EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C365340-1A59-E9D4-44CE-6E52D1D803EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557DD6A7-F72F-AC73-006C-BBCF02768299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557DD6A7-F72F-AC73-006C-BBCF02768299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557DD6A7-F72F-AC73-006C-BBCF02768299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557DD6A7-F72F-AC73-006C-BBCF02768299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76101A1F-C1E7-AFE0-389C-FB59299C7281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76101A1F-C1E7-AFE0-389C-FB59299C7281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76101A1F-C1E7-AFE0-389C-FB59299C7281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76101A1F-C1E7-AFE0-389C-FB59299C7281}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D90F3C0-AF8F-CB8D-6DCD-DC667DC1E44C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9C365340-1A59-E9D4-44CE-6E52D1D803EB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{557DD6A7-F72F-AC73-006C-BBCF02768299} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{76101A1F-C1E7-AFE0-389C-FB59299C7281} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D75829F-3A4A-4CC6-8BEB-D32210E61EFF}
+	EndGlobalSection
+EndGlobal
