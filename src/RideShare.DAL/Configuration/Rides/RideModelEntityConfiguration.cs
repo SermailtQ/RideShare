@@ -22,8 +22,9 @@ namespace RideShare.DAL.Configuration.Rides
             builder.Property(r => r.Baggage)
                 .IsRequired();
 
-            builder.Property(r => r.Price)
-                .IsRequired();
+            builder.Property(b => b.Price)
+                .IsRequired()
+                .HasPrecision(18, 4);
 
             builder.Property(r => r.PaymentMethodId)
                 .IsRequired();

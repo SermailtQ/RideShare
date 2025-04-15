@@ -19,11 +19,10 @@ internal class VehicleMakeModelEntityConfiguration : IEntityTypeConfiguration<Ve
             .WithOne(v => v.Make)
             .HasForeignKey(v => v.MakeId)
             .OnDelete(DeleteBehavior.NoAction);
-uilder.HasMany(v => v.Models)
+
+        builder.HasMany(v => v.Models)
             .WithOne(v => v.Make)
             .HasForeignKey(v => v.MakeId)
             .OnDelete(DeleteBehavior.NoAction);
-
-        b
     }
 }

@@ -13,7 +13,9 @@ internal class BookingModelEntityConfiguration : IEntityTypeConfiguration<Bookin
 
         builder.Property(b => b.UserId).IsRequired();
         builder.Property(b => b.RideId).IsRequired();
-        builder.Property(b => b.TotalPrice).IsRequired();
+        builder.Property(b => b.TotalPrice)
+            .IsRequired()
+            .HasPrecision(18, 4);
 
         builder.HasMany(b => b.DriverFeedbacks)
             .WithOne(p => p.Booking)

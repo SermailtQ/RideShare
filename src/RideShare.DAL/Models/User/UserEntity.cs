@@ -26,5 +26,6 @@ public class UserEntity : BaseEntity
     public virtual ICollection<VehicleEntity>? Vehicles { get; set; }
     public virtual ICollection<DriverFeedbackEntity>? DriverFeedbacks { get; set; }
     public virtual ICollection<UserRoleEntity>? Roles { get; set; }
+    public virtual ICollection<BookingEntity>? Bookings { get; set; }
 
 }
