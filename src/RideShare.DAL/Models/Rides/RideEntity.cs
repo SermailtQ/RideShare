@@ -1,18 +1,19 @@
-﻿namespace RideShare.DAL.Models.Rides
+﻿namespace RideShare.DAL.Models;
+
+public class RideEntity : BaseEntity
 {
-    public class RideEntity : BaseEntity
-    {
-        public int DriverId { get; set; }
-        public int VehicleId { get; set; }
-        public DateTime DepartureDate { get; set; } = DateTime.UtcNow;
-        public string Departure { get; set; }
-        public string Destination { get; set; }
-        public string Notes { get; set; }
+    public required Guid VehicleId { get; set; }
+    public required DateTime DepartureDate { get; set; } = DateTime.UtcNow;
+    public required string DepartureAdress { get; set; }
+    public required string DestinationAdress { get; set; }
+    public required bool Baggage { get; set; }
+    public required Decimal Price { get; set; }
+    public required Guid PaymentMethodId { get; set; }
+    public string? Notes { get; set; }
 
-        // Navigation properties
+    // Navigation properties
 
-        public virtual required UserEntity Driver { get; set; }
-        public virtual required VehicleEntity Vehicle { get; set; }
-
-    }
+    public virtual required VehicleEntity Vehicle { get; set; }
+    public virtual required PaymentMethodEntity PaymentMethod { get; set; }
+    public virtual ICollection<BookingEntity>? Bookings { get; set; }
 }
