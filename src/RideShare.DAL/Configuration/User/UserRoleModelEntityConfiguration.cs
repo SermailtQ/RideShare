@@ -16,6 +16,32 @@ namespace RideShare.DAL.Configuration
 
             builder.Property(u => u.Description)
                 .IsRequired().HasMaxLength(250);
+
+            builder.HasData(
+                new UserRoleEntity
+                {
+                    Id = RolesSeedConstants.AdminRoleId,
+                    Name = RolesSeedConstants.AdminRoleName,
+                    Description = "Administrator with full access",
+                    CreatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                    UpdatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new UserRoleEntity
+                {
+                    Id = RolesSeedConstants.DriverRoleId,
+                    Name = RolesSeedConstants.DriverRoleName,
+                    Description = "User who can offer rides",
+                    CreatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                    UpdatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new UserRoleEntity
+                {
+                    Id = RolesSeedConstants.PassagerRoleId,
+                    Name = RolesSeedConstants.PassagerRoleName,
+                    Description = "Passager who can book rides",
+                    CreatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                    UpdatedAt = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                });
         }
     }
 }

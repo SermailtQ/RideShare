@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RideShare.DAL.Context;
+using RideShare.DAL.Interfaces;
+using RideShare.DAL.Repositories;
 
 namespace RideShare.DAL
 {
@@ -11,6 +13,9 @@ namespace RideShare.DAL
         {
             services.AddDbContext<AppDbContext>(options =>
                  options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
         }
     }
 }

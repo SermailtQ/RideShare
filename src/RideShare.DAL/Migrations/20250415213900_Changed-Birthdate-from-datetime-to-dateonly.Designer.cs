@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RideShare.DAL.Context;
 
@@ -11,9 +12,11 @@ using RideShare.DAL.Context;
 namespace RideShare.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415213900_Changed-Birthdate-from-datetime-to-dateonly")]
+    partial class ChangedBirthdatefromdatetimetodateonly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,32 +258,6 @@ namespace RideShare.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("be2d2e92-f827-4058-aae8-f87be14b84e9"),
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Administrator with full access",
-                            Name = "Admin",
-                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = new Guid("83700286-0449-41c2-84c9-39f08e5f60b9"),
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "User who can offer rides",
-                            Name = "Driver",
-                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = new Guid("3bac86d1-bb1d-41e3-ac0c-bd2f0058359e"),
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Passager who can book rides",
-                            Name = "Passager",
-                            UpdatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        });
                 });
 
             modelBuilder.Entity("RideShare.DAL.Models.UserStatusEntity", b =>

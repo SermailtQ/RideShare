@@ -12,7 +12,7 @@ public class UserEntity : BaseEntity
     public required string Lastname { get; set; }
     public required string Phone { get; set; }
     public string? PhotoUrl { get; set; }
-    public DateTime? Birthdate { get; set; }
+    public DateOnly? Birthdate { get; set; }
 
     // Status
     public DateTime LastLogin { get; set; } = DateTime.UtcNow;
