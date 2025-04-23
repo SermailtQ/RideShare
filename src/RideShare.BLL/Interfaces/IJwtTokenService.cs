@@ -2,7 +2,8 @@
 
 namespace RideShare.BLL.Interfaces;
 
-public interface IJwtTokenGenerator
+public interface IJwtTokenService
 {
     string GenerateToken(UserEntity user);
+    string GenerateRefreshToken();
 }

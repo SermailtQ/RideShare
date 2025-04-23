@@ -8,7 +8,7 @@ namespace RideShare.API.Controllers
     [Route("api/[controller]")]
     public class AccountController(IAccountService _accountService) : ControllerBase
     {
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDto entity)
         {
             if (entity == null)
@@ -28,13 +28,13 @@ namespace RideShare.API.Controllers
             {
                 return Conflict(new { Message = ex.Message });
             }
-            catch (Exception ex)
+            catch
             {
                 return BadRequest(new { Message = $"An error occured on the server, please try later" });
             }
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto entity)
         {
             if (entity == null)
@@ -44,7 +44,7 @@ namespace RideShare.API.Controllers
             {
                 var token = await _accountService.LoginUserAsync(entity);
 
-                return Ok(new { Token = token });
+                return Ok(new { token.Token, token.RefreshToken });
             }
             catch (ArgumentNullException ex)
             {
@@ -58,10 +58,16 @@ namespace RideShare.API.Controllers
             {
                 return Conflict(new { Message = ex.Message });
             }
-            catch (Exception ex)
+            catch
             {
                 return BadRequest(new { Message = $"An error occured on the server, please try later" });
             }
+        }
+
+        [HttpPost("Refresh")]
+        public async Task<IActionResult> Refresh([FromBody] string refreshToken)
+        {
+            return Ok(new { Token = string.Empty, RefreshToken = string.Empty });
         }
     }
 }

@@ -1,14 +1,12 @@
 using RideShare.DAL;
 using RideShare.BLL;
+using RideShare.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.RegisterServicesApi();
 builder.Services.RegisterServicesDal(builder.Configuration);
-builder.Services.RegisterServicesBLL();
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.RegisterServicesBLL(builder.Configuration);
 
 var app = builder.Build();
 
@@ -19,6 +17,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

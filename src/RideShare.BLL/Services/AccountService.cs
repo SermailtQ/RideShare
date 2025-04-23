@@ -3,13 +3,14 @@ using RideShare.BLL.Interfaces;
 using RideShare.DAL.Configuration;
 using RideShare.DAL.Interfaces;
 using RideShare.DAL.Models;
+using RideShare.DAL.Models.User;
 
 namespace RideShare.BLL.Services;
 
 internal class AccountService(IUserRepository _userRepository, IRoleRepository _roleRepository,
-    IPasswordHasher _passwordHasher, IJwtTokenGenerator _jwtTokenGenerator) : IAccountService
+    IPasswordHasher _passwordHasher, IJwtTokenService _jwtTokenGenerator, IRefreshTokenRepository _refreshTokenRepository) : IAccountService
 {
-    public async Task<string> LoginUserAsync(UserLoginDto entity)
+    public async Task<JwtTokenDto> LoginUserAsync(UserLoginDto entity)
     {
         var user = await _userRepository.GetUserByCriteriaAsync(x => x.Email == entity.Email);
 
@@ -19,7 +20,28 @@ internal class AccountService(IUserRepository _userRepository, IRoleRepository _
         if (!_passwordHasher.Verify(user.PasswordHash, entity.Password))
             throw new UnauthorizedAccessException("Password is incorrect");
 
-        return _jwtTokenGenerator.GenerateToken(user);
+        var token = _jwtTokenGenerator.GenerateToken(user);
+        var refreshToken = _jwtTokenGenerator.GenerateRefreshToken();
+
+        var refreshTokenEntity = new UserRefreshToken
+        {
+            User = user,
+            RefreshToken = refreshToken,
+        };
+
+        try
+        {
+            await _refreshTokenRepository.AddUserRefreshTokens(refreshTokenEntity);
+            await _refreshTokenRepository.SaveChangesAsync();
+        }
+        catch
+        {
+            throw new ArgumentNullException("An error occured on the server, please try later");
+        }
+
+        var returnResult = new JwtTokenDto(token, refreshToken);
+
+        return returnResult;
     }
 
     public async Task RegisterUserAsync(RegisterUserDto entity)
@@ -63,4 +85,10 @@ internal class AccountService(IUserRepository _userRepository, IRoleRepository _
             throw new ArgumentNullException("An error occured on the server, please try later");
         }
     }
+
+    public Task<JwtTokenDto> RefreshToken(string refreshToken)
+    {
+        throw new NotImplementedException();
+    }
+
 }

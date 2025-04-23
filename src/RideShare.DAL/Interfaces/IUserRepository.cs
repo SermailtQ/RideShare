@@ -11,5 +11,6 @@ public interface IUserRepository
     Task<bool> IsEmailInUseAsync(string email);
     Task<bool> IsUsernameInUseAsync(string username);
     Task<bool> IsPhoneInUseAsync(string phone);
+    Task<bool> AddRefreshToken(UserEntity user, string refreshToken);
     Task<bool> SaveChangesAsync();
 }

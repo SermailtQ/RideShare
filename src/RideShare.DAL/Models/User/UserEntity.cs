@@ -1,4 +1,6 @@
-﻿namespace RideShare.DAL.Models;
+﻿using RideShare.DAL.Models.User;
+
+namespace RideShare.DAL.Models;
 
 public class UserEntity : BaseEntity
 {
@@ -27,5 +29,6 @@ public class UserEntity : BaseEntity
     public virtual ICollection<DriverFeedbackEntity>? DriverFeedbacks { get; set; }
     public virtual ICollection<UserRoleEntity>? Roles { get; set; }
     public virtual ICollection<BookingEntity>? Bookings { get; set; }
+    public virtual ICollection<UserRefreshToken>? RefreshTokens { get; set; }
 
 }

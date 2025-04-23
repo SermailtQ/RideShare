@@ -50,6 +50,11 @@ namespace RideShare.DAL.Configuration
                 .WithOne(v => v.User)
                 .HasForeignKey(v => v.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(u => u.RefreshTokens)
+                .WithOne(v => v.User)
+                .HasForeignKey(v => v.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
         }

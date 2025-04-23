@@ -42,6 +42,12 @@ namespace RideShare.DAL.Repositories
         {
             return await _context.SaveChangesAsync() >= 1;
         }
+        public async Task<bool> AddRefreshToken(UserEntity user, string refreshToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Dispose Methods
 
         private bool disposed = false;
 
@@ -62,5 +68,6 @@ namespace RideShare.DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+        #endregion
     }
 }
