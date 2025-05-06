@@ -67,7 +67,70 @@ namespace RideShare.API.Controllers
         [HttpPost("Refresh")]
         public async Task<IActionResult> Refresh([FromBody] string refreshToken)
         {
-            return Ok(new { Token = string.Empty, RefreshToken = string.Empty });
+            if (string.IsNullOrWhiteSpace(refreshToken))
+                return BadRequest("Invalid request");
+
+            try
+            {
+                var token = await _accountService.RefreshToken(refreshToken);
+
+                return Ok(new { token.Token, token.RefreshToken });
+            }
+            catch (ApplicationException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return Conflict(new { Message = ex.Message });
+            }
+            catch
+            {
+                return BadRequest(new { Message = $"An error occured on the server, please try later" });
+            }
         }
+
+        [HttpPost("Revoke-Refresh-Token/{id}")]
+        public async Task<IActionResult> RevokeRefreshTokens([FromRoute] Guid? id)
+        {
+            if (id == null || id == Guid.Empty)
+                return BadRequest("Invalid request: missing or empty ID.");
+
+            try
+            {
+                await _accountService.RevokeRefreshTokens(id);
+
+                return Ok();
+            }
+            catch (ApplicationException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return Conflict(new { Message = ex.Message });
+            }
+            catch
+            {
+                return BadRequest(new { Message = $"An error occured on the server, please try later" });
+            }
+        }
+
     }
 }

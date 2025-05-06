@@ -15,6 +15,7 @@ namespace RideShare.BLL
             services.AddScoped<IAccountService, AccountService>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
+            services.AddHttpContextAccessor();
 
             #region Jwt Configuration
             var key = Encoding.UTF8.GetBytes(configuration["Jwt:Key"]);

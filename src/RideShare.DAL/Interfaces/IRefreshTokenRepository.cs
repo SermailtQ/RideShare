@@ -6,9 +6,9 @@ namespace RideShare.DAL.Interfaces
     {
         Task AddUserRefreshTokens(UserRefreshToken refreshToken);
 
-        Task<UserRefreshToken> GetSavedRefreshTokens(string email, string refreshtoken);
+        Task<UserRefreshToken> GetRefreshTokensForUser(string refreshtoken);
 
-        Task DeleteUserRefreshTokens(string email, string refreshToken);
+        Task RemoveUserRefreshTokens(Guid UserId);
         Task SaveChangesAsync();
     }
 }

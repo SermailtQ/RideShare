@@ -12,19 +12,17 @@ namespace RideShare.DAL.Repositories
            await _context.UserRefreshTokens.AddAsync(refreshToken);
         }
 
-        public async Task DeleteUserRefreshTokens(string email, string refreshToken)
+        public async Task<UserRefreshToken> GetRefreshTokensForUser(string refreshToken)
+         => await _context.UserRefreshTokens.
+                Include(refresh => refresh.User).
+            FirstOrDefaultAsync(refresh => refresh.RefreshToken == refreshToken);
+
+        public async Task RemoveUserRefreshTokens(Guid UserId)
         {
-            var item = await _context.UserRefreshTokens.FirstOrDefaultAsync(x => x.User.Email == email && x.RefreshToken == refreshToken);
-            if (item != null)
-            {
-                _context.UserRefreshTokens.Remove(item);
-            }
-
-            throw new ArgumentNullException(nameof(item), "Refresh token not found");
+            await _context.UserRefreshTokens
+                .Where(refresh => refresh.UserId == UserId)
+                .ExecuteDeleteAsync();
         }
-
-        public async Task<UserRefreshToken> GetSavedRefreshTokens(string email, string refreshToken) 
-            => await _context.UserRefreshTokens.FirstOrDefaultAsync(x => x.User.Email == email && x.RefreshToken == refreshToken);
 
         public async Task SaveChangesAsync()
         {
